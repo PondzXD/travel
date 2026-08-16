@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>สถานที่</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="./index.html">
+      <i class="brand-pin"></i>
+      <span id="siteName"></span>
+    </a>
+
+    <nav class="nav-menu">
+      <a id="navPlaces" href="./places.html"></a>
+      <a id="navFavorites" href="./favorites.html" class="auth-only hidden"></a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="language-switch">
+        <button id="thButton" class="active">TH</button>
+        <button id="enButton">ENG</button>
+      </div>
+
+      <div id="guestActions" class="guest-actions">
+        <button id="openSignIn" class="header-button ghost"></button>
+        <button id="openSignUp" class="header-button primary"></button>
+      </div>
+
+      <div id="userActions" class="user-actions hidden">
+        <button class="user-chip" type="button">
+          <span class="user-avatar">👤</span>
+          <span id="currentUserName"></span>
+        </button>
+        <button id="signOutButton" class="header-button ghost"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<main class="container places-page">
+  <section id="regions" class="section compact-top">
+    <div class="section-heading">
+      <div>
+        <h2 id="chooseRegionTitle"></h2>
+        <p id="chooseRegionSub"></p>
+      </div>
+    </div>
+
+    <div id="regionGrid" class="region-grid"></div>
+
+    <div class="province-box">
+      <h3 id="chooseProvinceTitle"></h3>
+      <div id="provinceList" class="province-list"></div>
+    </div>
+  </section>
+
+  <section id="places" class="section">
+    <div class="section-heading">
+      <div>
+        <h2 id="placesTitle"></h2>
+        <p id="placesSub"></p>
+      </div>
+
+      <div class="place-tools">
+        <div class="place-search-wrap">
+          <div class="place-search">
+            <input id="placeSearch" type="search" autocomplete="off">
+            <button id="clearSearch">×</button>
+          </div>
+          <div id="placeSuggestions" class="search-suggestions place-suggestions hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-list">
+      <button id="filterAll" class="filter-button active" data-category="all"></button>
+      <button id="filterNature" class="filter-button" data-category="nature"></button>
+      <button id="filterHistory" class="filter-button" data-category="history"></button>
+      <button id="filterActivity" class="filter-button" data-category="activity"></button>
+      <button id="filterReviews" class="filter-button review-filter" data-category="reviews"></button>
+      <button id="filterNearMe" class="filter-button near-me-filter" data-category="nearby">📍 <span id="nearMeText"></span></button>
+    </div>
+
+    <div id="placeGrid" class="place-grid"></div>
+  </section>
+</main>
+
+<footer class="site-footer"><span id="footerText"></span></footer>
+
+
+<div id="placeModal" class="modal">
+  <button id="closeModal" class="modal-close">×</button>
+
+  <div class="modal-card gallery-modal-card">
+
+    <div class="place-gallery">
+      <div class="gallery-stage">
+        <img id="galleryImage" alt="Place photo">
+        <div id="galleryFallback" class="gallery-fallback hidden">📍</div>
+
+        <button id="galleryPrev" class="gallery-arrow gallery-prev" type="button">‹</button>
+        <button id="galleryNext" class="gallery-arrow gallery-next" type="button">›</button>
+
+        <div id="galleryCounter" class="gallery-counter">1 / 3</div>
+      </div>
+
+      <div id="galleryDots" class="gallery-dots"></div>
+    </div>
+
+    <div class="modal-info">
+      <span id="modalCategory" class="modal-category"></span>
+
+      <div class="modal-title-row">
+        <h2 id="modalName"></h2>
+        <button id="modalFavoriteButton" class="favorite-button" type="button">♡</button>
+      </div>
+
+      <div id="modalSub" style="color:#8b968f;font-size:13px"></div>
+      <p id="modalDescription"></p>
+
+      <div id="modalRating" class="modal-row"></div>
+      <div id="modalAddress" class="modal-row"></div>
+      <div id="modalHours" class="modal-row"></div>
+      <div id="modalPhone" class="modal-row"></div>
+
+      <div class="modal-actions">
+        <a id="modalMaps" class="modal-button primary" target="_blank" rel="noopener"></a>
+        <button id="openNearbyShops" class="modal-button shop-button" type="button">
+          🛍️ ร้านค้าใกล้เคียง
+        </button>
+        <button id="openPlaceReviews" class="modal-button review-link-button" type="button">
+          ⭐ ดูรีวิว
+        </button>
+      </div>
+    </div>
+
+    <iframe id="modalMap" class="modal-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
+
+
+
+<!-- ==================== Nearby Shops Modal ==================== -->
+<div id="nearbyShopModal" class="modal">
+  <button id="closeNearbyShopModal" class="modal-close">×</button>
+
+  <div class="nearby-shop-panel">
+    <div class="nearby-shop-head">
+      <div>
+        <button id="backToPlaceFromShopList" class="back-link-button" type="button">
+          ← กลับไปสถานที่
+        </button>
+
+        <h2 id="nearbyShopTitle">ร้านค้าใกล้เคียง</h2>
+        <p id="nearbyShopSubtitle"></p>
+      </div>
+    </div>
+
+    <div id="nearbyShopGrid" class="shop-grid"></div>
+  </div>
+</div>
+
+<!-- ==================== Shop Detail Modal ==================== -->
+<div id="shopDetailModal" class="modal">
+  <button id="closeShopDetailModal" class="modal-close">×</button>
+
+  <div class="modal-card gallery-modal-card">
+
+    <div class="place-gallery">
+      <div class="gallery-stage">
+        <img id="shopGalleryImage" alt="Shop photo">
+        <div id="shopGalleryFallback" class="gallery-fallback hidden">🛍️</div>
+
+        <button id="shopGalleryPrev" class="gallery-arrow gallery-prev" type="button">‹</button>
+        <button id="shopGalleryNext" class="gallery-arrow gallery-next" type="button">›</button>
+
+        <div id="shopGalleryCounter" class="gallery-counter">1 / 1</div>
+      </div>
+
+      <div id="shopGalleryDots" class="gallery-dots"></div>
+    </div>
+
+    <div class="modal-info">
+
+      <button id="backToPlaceFromShopDetail" class="back-link-button" type="button">
+        ← กลับไปสถานที่
+      </button>
+
+      <span id="shopType" class="modal-category"></span>
+
+      <div class="modal-title-row">
+        <h2 id="shopName"></h2>
+        <button
+          id="shopFavoriteButton"
+          class="favorite-button"
+          type="button"
+          title="Favorite"
+        >♡</button>
+      </div>
+
+      <div id="shopSub" style="color:#8b968f;font-size:13px"></div>
+
+      <p id="shopDescription"></p>
+
+      <div id="shopProducts" class="modal-row"></div>
+      <div id="shopRating" class="modal-row"></div>
+      <div id="shopAddress" class="modal-row"></div>
+      <div id="shopHours" class="modal-row"></div>
+      <div id="shopContact" class="modal-row"></div>
+
+      <section class="shop-product-section">
+        <div class="detail-section-head">
+          <h3 id="shopProductsTitle">สินค้า</h3>
+        </div>
+        <div id="shopProductGrid" class="product-grid"></div>
+      </section>
+<div class="modal-actions">
+        <a id="shopMaps" class="modal-button primary" target="_blank" rel="noopener">
+          เปิด Google Maps
+        </a>
+        <button id="openShopReviews" class="modal-button review-link-button" type="button">
+          ⭐ ดูรีวิว
+        </button>
+      </div>
+    </div>
+
+    <iframe
+      id="shopMap"
+      class="modal-map"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+
+  </div>
+</div>
+
+<div id="authModal" class="modal">
+  <button id="closeAuthModal" class="modal-close">×</button>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-logo">📍</div>
+      <h2 id="authTitle"></h2>
+      <p id="authSubtitle"></p>
+    </div>
+
+    <div class="auth-tabs">
+      <button id="signInTab" class="auth-tab active"></button>
+      <button id="signUpTab" class="auth-tab"></button>
+    </div>
+
+    <div class="social-auth">
+      <button id="googleAuthButton" class="social-button google" type="button">
+        <span>G</span><strong id="googleText"></strong>
+      </button>
+      <button id="facebookAuthButton" class="social-button facebook" type="button">
+        <span>f</span><strong id="facebookText"></strong>
+      </button>
+    </div>
+
+    <div class="auth-divider"><span id="orText"></span></div>
+
+    <form id="authForm">
+      <label><span id="usernameLabel"></span><input id="authUsername" type="text" required></label>
+      <label><span id="passwordLabel"></span><input id="authPassword" type="password" required></label>
+      <label id="confirmPasswordWrap" class="hidden"><span id="confirmPasswordLabel"></span><input id="authConfirmPassword" type="password"></label>
+      <div id="authMessage" class="auth-message"></div>
+      <button id="authSubmitButton" class="auth-submit" type="submit"></button>
+    </form>
+
+    <p id="authDemoNotice" class="auth-notice"></p>
+  </div>
+</div>
+
+
+<script src="./data.js"></script>
+<script src="./shops-data.js"></script>
+<script src="./demo-shops.js"></script>
+<script src="./demo-data.js"></script>
+<script src="./firebase-config.js"></script>
+<script src="./firebase-data.js"></script>
+<script src="./page-text.js"></script>
+<script src="./auth.js"></script>
+<script src="./common.js"></script>
+<script src="./reviews.js"></script>
+<script src="./shop-favorites.js"></script>
+<script src="./shops-front.js"></script>
+<script src="./places.js"></script>
+</body>
+</html>

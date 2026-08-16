@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>รีวิว</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="./index.html">
+      <i class="brand-pin"></i>
+      <span id="siteName"></span>
+    </a>
+
+    <nav class="nav-menu">
+      <a id="navPlaces" href="./places.html"></a>
+      <a id="navFavorites" href="./favorites.html" class="auth-only hidden"></a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="language-switch">
+        <button id="thButton" class="active">TH</button>
+        <button id="enButton">ENG</button>
+      </div>
+
+      <div id="guestActions" class="guest-actions">
+        <button id="openSignIn" class="header-button ghost"></button>
+        <button id="openSignUp" class="header-button primary"></button>
+      </div>
+
+      <div id="userActions" class="user-actions hidden">
+        <button class="user-chip" type="button">
+          <span class="user-avatar">👤</span>
+          <span id="currentUserName"></span>
+        </button>
+        <button id="signOutButton" class="header-button ghost"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container review-page section">
+
+  <button
+    id="reviewBackButton"
+    class="back-link-button"
+    type="button"
+  >
+    ← กลับ
+  </button>
+
+  <div id="reviewTargetCard" class="review-target-card"></div>
+
+  <section class="review-page-panel">
+
+    <div class="review-page-heading">
+
+      <div>
+        <span class="modal-category">REVIEWS</span>
+        <h1 id="reviewPageTitle">รีวิว</h1>
+      </div>
+
+      <div id="reviewPageSummary" class="review-big-score"></div>
+
+    </div>
+
+    <div
+      id="reviewPageList"
+      class="review-list review-page-list"
+    ></div>
+
+
+    <div id="reviewFormWrap" class="review-form-wrap">
+
+      <h3 id="reviewFormHeading">
+        แชร์ประสบการณ์ของคุณ
+      </h3>
+
+      <p
+        id="reviewLoginHint"
+        class="review-login-hint"
+      ></p>
+
+      <div class="star-input" id="pageStarInput">
+        <button type="button" data-page-star="1">☆</button>
+        <button type="button" data-page-star="2">☆</button>
+        <button type="button" data-page-star="3">☆</button>
+        <button type="button" data-page-star="4">☆</button>
+        <button type="button" data-page-star="5">☆</button>
+      </div>
+
+      <textarea
+        id="pageReviewText"
+        placeholder="เขียนรีวิว..."
+      ></textarea>
+
+      <button
+        id="submitPageReview"
+        class="modal-button primary"
+        type="button"
+      >
+        ส่งรีวิว
+      </button>
+
+      <div
+        id="pageReviewMessage"
+        class="review-message"
+      ></div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<div id="authModal" class="modal">
+  <button id="closeAuthModal" class="modal-close">×</button>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-logo">📍</div>
+      <h2 id="authTitle"></h2>
+      <p id="authSubtitle"></p>
+    </div>
+
+    <div class="auth-tabs">
+      <button id="signInTab" class="auth-tab active"></button>
+      <button id="signUpTab" class="auth-tab"></button>
+    </div>
+
+    <div class="social-auth">
+      <button id="googleAuthButton" class="social-button google" type="button">
+        <span>G</span><strong id="googleText"></strong>
+      </button>
+      <button id="facebookAuthButton" class="social-button facebook" type="button">
+        <span>f</span><strong id="facebookText"></strong>
+      </button>
+    </div>
+
+    <div class="auth-divider"><span id="orText"></span></div>
+
+    <form id="authForm">
+      <label><span id="usernameLabel"></span><input id="authUsername" type="text" required></label>
+      <label><span id="passwordLabel"></span><input id="authPassword" type="password" required></label>
+      <label id="confirmPasswordWrap" class="hidden"><span id="confirmPasswordLabel"></span><input id="authConfirmPassword" type="password"></label>
+      <div id="authMessage" class="auth-message"></div>
+      <button id="authSubmitButton" class="auth-submit" type="submit"></button>
+    </form>
+
+    <p id="authDemoNotice" class="auth-notice"></p>
+  </div>
+</div>
+
+<script src="./data.js"></script>
+<script src="./shops-data.js"></script>
+<script src="./demo-shops.js"></script>
+<script src="./demo-data.js"></script>
+
+<script src="./page-text.js"></script>
+<script src="./auth.js"></script>
+<script src="./common.js"></script>
+
+<script src="./reviews.js"></script>
+<script src="./reviews-page.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>รายการโปรด</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="./index.html">
+      <i class="brand-pin"></i>
+      <span id="siteName"></span>
+    </a>
+
+    <nav class="nav-menu">
+      <a id="navPlaces" href="./places.html"></a>
+      <a id="navFavorites" href="./favorites.html" class="auth-only hidden"></a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="language-switch">
+        <button id="thButton" class="active">TH</button>
+        <button id="enButton">ENG</button>
+      </div>
+
+      <div id="guestActions" class="guest-actions">
+        <button id="openSignIn" class="header-button ghost"></button>
+        <button id="openSignUp" class="header-button primary"></button>
+      </div>
+
+      <div id="userActions" class="user-actions hidden">
+        <button class="user-chip" type="button">
+          <span class="user-avatar">👤</span>
+          <span id="currentUserName"></span>
+        </button>
+        <button id="signOutButton" class="header-button ghost"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container section favorites-page">
+
+  <div class="section-heading">
+
+    <div>
+      <div class="hero-kicker">
+        FAVORITES
+      </div>
+
+      <h1 id="favoritesPageTitle">
+        รายการโปรด
+      </h1>
+
+      <p id="favoritesPageSub">
+        สถานที่และร้านค้าที่คุณบันทึกไว้
+      </p>
+    </div>
+
+  </div>
+
+
+  <div
+    id="favoritesGuest"
+    class="empty-state hidden"
+  >
+
+    <div class="empty-icon">
+      ♡
+    </div>
+
+    <strong id="favoritesGuestTitle">
+      เข้าสู่ระบบเพื่อดูรายการโปรด
+    </strong>
+
+    <button
+      id="favoritesLoginButton"
+      class="modal-button primary"
+      type="button"
+    >
+      เข้าสู่ระบบ
+    </button>
+
+  </div>
+
+
+  <div
+    id="favoritesContent"
+    class="hidden"
+  >
+
+    <section class="favorite-page-section">
+
+      <h2 id="favPlacesHeading">
+        📍 สถานที่โปรด
+      </h2>
+
+      <div
+        id="favoritePlacePageGrid"
+        class="place-grid"
+      ></div>
+
+    </section>
+
+
+    <section class="favorite-page-section">
+
+      <h2 id="favShopsHeading">
+        🛍️ ร้านค้าโปรด
+      </h2>
+
+      <div
+        id="favoriteShopPageGrid"
+        class="shop-grid"
+      ></div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<div id="authModal" class="modal">
+  <button id="closeAuthModal" class="modal-close">×</button>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-logo">📍</div>
+      <h2 id="authTitle"></h2>
+      <p id="authSubtitle"></p>
+    </div>
+
+    <div class="auth-tabs">
+      <button id="signInTab" class="auth-tab active"></button>
+      <button id="signUpTab" class="auth-tab"></button>
+    </div>
+
+    <div class="social-auth">
+      <button id="googleAuthButton" class="social-button google" type="button">
+        <span>G</span><strong id="googleText"></strong>
+      </button>
+      <button id="facebookAuthButton" class="social-button facebook" type="button">
+        <span>f</span><strong id="facebookText"></strong>
+      </button>
+    </div>
+
+    <div class="auth-divider"><span id="orText"></span></div>
+
+    <form id="authForm">
+      <label><span id="usernameLabel"></span><input id="authUsername" type="text" required></label>
+      <label><span id="passwordLabel"></span><input id="authPassword" type="password" required></label>
+      <label id="confirmPasswordWrap" class="hidden"><span id="confirmPasswordLabel"></span><input id="authConfirmPassword" type="password"></label>
+      <div id="authMessage" class="auth-message"></div>
+      <button id="authSubmitButton" class="auth-submit" type="submit"></button>
+    </form>
+
+    <p id="authDemoNotice" class="auth-notice"></p>
+  </div>
+</div>
+
+<script src="./data.js"></script>
+<script src="./shops-data.js"></script>
+<script src="./demo-shops.js"></script>
+<script src="./demo-data.js"></script>
+
+<script src="./page-text.js"></script>
+<script src="./auth.js"></script>
+<script src="./common.js"></script>
+
+<script src="./shop-favorites.js"></script>
+<script src="./favorites-page.js"></script>
+
+</body>
+</html>

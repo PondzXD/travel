@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>เข้าสู่ระบบ | เที่ยวทั่วไทย</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./login.css">
+</head>
+<body>
+<main class="login-page">
+  <section class="login-card">
+    <a class="back" href="./index.html">← กลับเว็บไซต์</a>
+    <div class="logo">📍</div>
+    <h1 id="title">เข้าสู่ระบบ</h1>
+    <p class="sub">เข้าสู่ระบบเพื่อบันทึกสถานที่โปรดและใช้งานเว็บไซต์</p>
+
+    <button id="googleButton" class="google-btn" type="button"><span>G</span> เข้าสู่ระบบด้วย Google</button>
+    <div class="divider"><span>หรือ</span></div>
+
+    <form id="loginForm">
+      <label>อีเมล / Gmail<input id="email" type="email" autocomplete="email" required></label>
+      <label>รหัสผ่าน<input id="password" type="password" autocomplete="current-password" required></label>
+      <label id="nameWrap" class="hidden">ชื่อที่แสดง<input id="displayName" autocomplete="name"></label>
+      <label id="confirmWrap" class="hidden">ยืนยันรหัสผ่าน<input id="confirmPassword" type="password" autocomplete="new-password"></label>
+      <div id="message" class="message"></div>
+      <button id="submitButton" class="submit" type="submit">เข้าสู่ระบบ</button>
+    </form>
+
+    <button id="switchMode" class="switch" type="button">ยังไม่มีบัญชี? สมัครสมาชิก</button>
+    <div id="routeNotice" class="route-notice"></div>
+  </section>
+</main>
+<script src="./firebase-config.js"></script>
+<script src="./auth.js?v=20260816-login1"></script>
+<script src="./login.js?v=20260816-login1"></script>
+</body>
+</html>
