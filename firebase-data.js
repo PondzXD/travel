@@ -10,21 +10,24 @@
     const db = getFirestore(app);
 
     onSnapshot(collection(db, "places"), snap => {
-      SITE_DATA.places = snap.docs
-        .map(d => ({ id: d.id, ...d.data() }))
-        .filter(p => p.visible !== false);
-      window.dispatchEvent(new CustomEvent("places-data-updated", {
-        detail: { count: SITE_DATA.places.length }
-      }));
+      SITE_DATA.places = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(p => p.visible !== false);
+      window.dispatchEvent(new CustomEvent("places-data-updated", { detail: { count: SITE_DATA.places.length } }));
+      setTimeout(() => {
+        if (typeof renderPlaces === "function") renderPlaces();
+        if (typeof renderRecommended === "function") renderRecommended();
+        if (typeof renderFavorites === "function") renderFavorites();
+      }, 0);
     }, e => console.error("Places realtime sync failed", e));
 
     onSnapshot(collection(db, "shops"), snap => {
-      window.SHOPS_DATA = snap.docs
-        .map(d => ({ id: d.id, ...d.data() }))
-        .filter(s => s.visible !== false);
-      window.dispatchEvent(new CustomEvent("shops-data-updated", {
-        detail: { count: window.SHOPS_DATA.length }
-      }));
+      window.SHOPS_DATA = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(s => s.visible !== false);
+      window.dispatchEvent(new CustomEvent("shops-data-updated", { detail: { count: window.SHOPS_DATA.length } }));
+      setTimeout(() => {
+        if (typeof renderFavoriteShops === "function") renderFavoriteShops();
+        if (typeof currentParentPlaceId !== "undefined" && currentParentPlaceId && typeof shopsNearPlace === "function" && typeof renderNearbyShopGrid === "function") {
+          renderNearbyShopGrid(shopsNearPlace(currentParentPlaceId));
+        }
+      }, 0);
     }, e => console.error("Shops realtime sync failed", e));
 
     window.dispatchEvent(new CustomEvent("cloud-data-ready"));
