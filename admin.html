@@ -46,10 +46,10 @@
       </section>
 
       <section id="placeFormView" class="hidden">
-        <div class="head"><div><h2 id="placeFormTitle">เพิ่มสถานที่</h2><p>กรอกข้อมูลสถานที่</p></div><button id="backFromPlace" class="secondary">← กลับ</button></div>
-        <form id="placeForm" class="admin-form">
+        <div class="head"><div><h2 id="placeFormTitle">เพิ่มสถานที่</h2><p>กรอกเฉพาะข้อมูลที่มีได้เลย ช่องอื่นเว้นว่างได้ทั้งหมด</p></div><button id="backFromPlace" class="secondary">← กลับ</button></div>
+        <form id="placeForm" class="admin-form" novalidate>
           <input id="placeEditId" type="hidden">
-          <div class="form-card"><h3>ข้อมูลหลัก</h3><div class="grid2"><label>ชื่อ TH<input id="pNameTh" required></label><label>ชื่อ EN<input id="pNameEn" required></label></div><div class="grid3"><label>ภาค<select id="pRegion"></select></label><label>จังหวัด<select id="pProvince"></select></label><label>หมวดหมู่<select id="pCategory"><option value="nature">ธรรมชาติ</option><option value="history">ประวัติศาสตร์</option><option value="activity">ที่เที่ยว & กิจกรรม</option></select></label></div></div>
+          <div class="form-card"><h3>ข้อมูลหลัก</h3><div class="grid2"><label>ชื่อ TH<input id="pNameTh"></label><label>ชื่อ EN<input id="pNameEn"></label></div><div class="grid3"><label>ภาค<select id="pRegion"></select></label><label>จังหวัด<select id="pProvince"></select></label><label>หมวดหมู่<select id="pCategory"><option value="nature">ธรรมชาติ</option><option value="history">ประวัติศาสตร์</option><option value="activity">ที่เที่ยว & กิจกรรม</option></select></label></div></div>
           <div class="form-card"><h3>รายละเอียด</h3><div class="grid2"><label>อำเภอ TH<input id="pDistrictTh"></label><label>District EN<input id="pDistrictEn"></label><label>รายละเอียด TH<textarea id="pDescTh"></textarea></label><label>Description EN<textarea id="pDescEn"></textarea></label><label>ที่อยู่ TH<textarea id="pAddressTh"></textarea></label><label>Address EN<textarea id="pAddressEn"></textarea></label></div></div>
           <div class="form-card"><h3>เวลา / ติดต่อ / รีวิว</h3><div class="grid4"><label>เวลาเปิด<input id="pOpen" type="time"></label><label>เวลาปิด<input id="pClose" type="time"></label><label>เบอร์โทร<input id="pPhone"></label><label>Emoji<input id="pIcon"></label><label>Rating<input id="pRating" type="number" min="0" max="5" step=".1"></label><label>จำนวนรีวิว<input id="pReviews"></label><label>Latitude<input id="pLat" type="number" step="any"></label><label>Longitude<input id="pLng" type="number" step="any"></label></div><div class="grid2"><label>เวลารวม TH<input id="pHoursTh"></label><label>Hours EN<input id="pHoursEn"></label><label>Google Maps URL<input id="pMaps"></label><label>Embed URL<input id="pEmbed"></label></div></div>
           <div class="form-card"><h3>รูปภาพ</h3><p class="hint">ระบบฟรี: รูปจะถูกย่ออัตโนมัติและเก็บใน Firestore ไม่ต้องเปิด Storage/Blaze</p><label>รูปหน้าปก<input id="pCover" type="file" accept="image/*"></label><div id="pCoverPreview" class="cover-preview"></div><label>Gallery หลายรูป<input id="pGalleryFiles" type="file" accept="image/*" multiple></label><div id="pGalleryPreview" class="gallery-preview"></div></div>
@@ -85,7 +85,7 @@
 <script src="./shops-data.js"></script>
 <script src="./firebase-config.js"></script>
 <script src="./auth.js"></script>
-<script src="./admin-free-image-patch.js?v=20260817-free1"></script>
-<script src="./admin-v11.js?v=20260817-free1"></script>
+<script src="./admin-free-image-patch.js?v=20260817-free2"></script>
+<script src="./admin-v11.js?v=20260817-free2"></script>
 </body>
 </html>
