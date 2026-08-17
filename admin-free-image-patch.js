@@ -46,6 +46,7 @@
     });
   }
 
+  window.fileToDataURL = compress;
   window.uploadFile = async function (file) { return compress(file); };
   window.uploadDataUrl = async function (dataUrl) { return dataUrl; };
   window.uploadGalleryFiles = async function (files, pathPrefix, existing=[]) {
