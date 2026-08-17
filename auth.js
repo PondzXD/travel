@@ -29,15 +29,17 @@ const AuthService = (() => {
   async function initFirebase() {
     if (firebasePromise) return firebasePromise;
     firebasePromise = (async () => {
-      // รองรับทั้ง firebase-config.js แบบใหม่ (window.FIREBASE_CONFIG)
-      // และแบบเดิมที่ประกาศ const firebaseConfig โดยตรง
       const cfg = window.FIREBASE_CONFIG || (typeof firebaseConfig !== "undefined" ? { enabled: true, config: firebaseConfig } : null);
       if (!cfg?.enabled || !cfg?.config) throw new Error("FIREBASE_NOT_CONFIGURED");
-      const [{ initializeApp }, authMod] = await Promise.all([
+
+      const [{ initializeApp, getApps, getApp }, authMod] = await Promise.all([
         import("https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js"),
         import("https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js")
       ]);
-      const app = initializeApp(cfg.config);
+
+      // Reuse the existing Firebase app so auth.js, firebase-data.js and admin-v11.js
+      // can safely load on the same page without duplicate-app errors.
+      const app = getApps().length ? getApp() : initializeApp(cfg.config);
       firebaseAuth = authMod.getAuth(app);
 
       authMod.onAuthStateChanged(firebaseAuth, user => {
