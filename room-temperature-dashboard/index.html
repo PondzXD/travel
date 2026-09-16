@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Temperature Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <p class="eyebrow">SMART ROOM MONITOR</p>
+        <h1>🌡️ Room Temperature</h1>
+        <p class="subtitle">ระบบติดตามอุณหภูมิและความชื้นแบบเรียลไทม์</p>
+      </div>
+      <div id="connection" class="status offline">● Connecting...</div>
+    </header>
+
+    <section class="cards">
+      <div class="card temperature"><div class="icon">🌡️</div><div><p>Temperature</p><h2><span id="temperature">--</span><small> °C</small></h2></div></div>
+      <div class="card humidity"><div class="icon">💧</div><div><p>Humidity</p><h2><span id="humidity">--</span><small> %</small></h2></div></div>
+      <div class="card room-status"><div class="icon">🏠</div><div><p>Room Status</p><h2 id="roomStatus">กำลังอ่านค่า...</h2><span id="statusDetail">รอข้อมูลจากเซนเซอร์</span></div></div>
+    </section>
+
+    <section class="info">
+      <div><span>Last update</span><strong id="lastUpdate">--</strong></div>
+      <div><span>Data source</span><strong>ESP32 + DHT22</strong></div>
+    </section>
+
+    <section class="history">
+      <div class="section-title"><div><p class="eyebrow">LIVE DATA</p><h2>Current readings</h2></div><span id="readingCount">0 readings</span></div>
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label"><span>Temperature</span><b id="tempValue">--</b></div><div class="bar-track"><div id="tempBar" class="bar temp-bar"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Humidity</span><b id="humidityValue">--</b></div><div class="bar-track"><div id="humidityBar" class="bar humidity-bar"></div></div></div>
+      </div>
+    </section>
+
+    <footer><p>ESP32 Room Monitoring Dashboard</p></footer>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
