@@ -6,20 +6,19 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 // Firebase configuration
-// ใช้ค่าจาก Firebase Project Settings > Your apps > Web app
 const firebaseConfig = {
   apiKey: "AIzaSyBsp0X9bEABM5XEHQ-YXQiYiJt89gt7sgM",
   authDomain: "roomtemperature-b30db.firebaseapp.com",
   databaseURL: "https://roomtemperature-b30db-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "roomtemperature-b30db",
   storageBucket: "roomtemperature-b30db.firebasestorage.app",
-  messagingSenderId: "ใส่_MESSAGING_SENDER_ID",
-  appId: "ใส่_APP_ID"
+  messagingSenderId: "68932342663",
+  appId: "1:68932342663:web:b8fd683143dbda5df67922",
+  measurementId: "G-GRZ8ZECZLT"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
 const roomRef = ref(db, "room");
 
 onValue(roomRef, (snapshot) => {
@@ -37,7 +36,6 @@ onValue(roomRef, (snapshot) => {
     document.getElementById("temperature").textContent = temperature.toFixed(1);
     document.getElementById("tempValue").textContent = temperature.toFixed(1) + " °C";
 
-    // 0–50 °C สำหรับแถบแสดงผล
     const tempPercent = Math.max(0, Math.min(100, (temperature / 50) * 100));
     document.getElementById("tempBar").style.width = tempPercent + "%";
   }
