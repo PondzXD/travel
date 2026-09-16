@@ -134,18 +134,26 @@ h1 {
   font-size: 14px;
 }
 
+.charts-section,
 .history {
   background: #191c22;
   border: 1px solid #292e37;
   border-radius: 22px;
   padding: 28px;
+  margin-bottom: 25px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+
+.chart-wrap {
+  position: relative;
+  height: 320px;
 }
 
 .section-title {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 22px;
 }
 
 .section-title h2 {
@@ -193,7 +201,7 @@ h1 {
 footer {
   text-align: center;
   color: #626a76;
-  padding-top: 30px;
+  padding-top: 5px;
   font-size: 12px;
 }
 
@@ -208,5 +216,14 @@ footer {
 
   .info {
     flex-direction: column;
+  }
+
+  .charts-section,
+  .history {
+    padding: 20px;
+  }
+
+  .chart-wrap {
+    height: 260px;
   }
 }
